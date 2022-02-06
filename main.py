@@ -3,6 +3,9 @@ import time
 import random
 from datetime import datetime
 from pymouse import PyMouse
+import keyboard
+
+time.sleep(1)
 
 mouse = PyMouse()
 def getColorDiff(colorArray):
@@ -55,6 +58,9 @@ mousePosition16= [
 ]
 
 def click(x,y):
+    mousex = pyautogui.position()[0]
+    if mousex > 1000:
+        exit()
     # mouse.click(725,233)
     print("clicking")
     # mouse.press(x,y)
@@ -66,40 +72,42 @@ def click(x,y):
 for j in range(4):
     time.sleep(0.5)
     currentColor4 = []
-    starttime = datetime.now()
+    im = pyautogui.screenshot()
     for i in mousePosition4:
-        currentColor4.append(pyautogui.pixel(i[0], i[1]))
+        currentColor4.append(im.getpixel(i))
 
     
     diffpoint = getColorDiff(currentColor4)
 
     index = diffpoint.index(max(diffpoint))
-    print(f"{len(currentColor4)} {[(i[0],i[1],i[2]) for i in currentColor4]}")
-    print(diffpoint)
-    # print(index)
-
-    # print(datetime.now() - starttime)
-    # starttime = datetime.now()
     click(mousePosition4[index][0], mousePosition4[index][1])
-    # print(f"time to click {datetime.now() - starttime}")
 
 
 
 for _ in range(15):
-    time.sleep(0.5)
+    time.sleep(1)
     currentColor6 = []
-    
+    im = pyautogui.screenshot()
+    time.sleep(0.5)
     for i in mousePosition6:
-        currentColor6.append(pyautogui.pixel(i[0], i[1]))
+        currentColor6.append(im.getpixel(i))
 
     
     diffpoint = getColorDiff(currentColor6)
 
     index = diffpoint.index(max(diffpoint))
     click(mousePosition6[index][0], mousePosition6[index][1])
-    # print(f"{len(currentColor6)} {currentColor6}")
-    # print(diffpoint)
-    # print(index)
-    # mouse.press(mousePosition6[index][0], mousePosition6[index][1])
-    # time.sleep(1)
-    # mouse.release(mousePosition6[index][0], mousePosition6[index][1])
+
+for _ in range(15):
+    time.sleep(1.5)
+    currentColor16 = []
+    im = pyautogui.screenshot()
+    time.sleep(0.5)
+    for i in mousePosition16:
+        currentColor16.append(im.getpixel(i))
+
+    
+    diffpoint = getColorDiff(currentColor16)
+
+    index = diffpoint.index(max(diffpoint))
+    click(mousePosition16[index][0], mousePosition16[index][1])
