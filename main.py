@@ -19,10 +19,18 @@ mousePosition4 = [
     (155, 620),
     (341, 620)
     ]
-currentColor4 = []
 
-for i in mousePosition4:
-    currentColor4.append(pyautogui.pixel(i[0], i[1]))
 
-getColorDiff(currentColor4)
+for i in range(4):
+    time.sleep(0.5)
+    currentColor4 = []
+    for i in mousePosition4:
+        currentColor4.append(pyautogui.pixel(i[0], i[1]))
+
+    diffpoint = getColorDiff(currentColor4)
+    print(diffpoint)
+    index = diffpoint.index(max(diffpoint))
+    print(index)
+    pyautogui.click(mousePosition4[index][0], mousePosition4[index][1])
+    
 
