@@ -12,11 +12,13 @@ def getColorDiff(colorArray):
     logColor(colorArray)
     diffPoint = []
     for i in colorArray:
-        temp = []
+        temp = 0
         for j in colorArray:
-            temp.append(abs(i[0] - j[0]) + abs(i[1] - j[1]) + abs(i[2] - j[2]))
+            # temp.append(abs(i[0] - j[0]) + abs(i[1] - j[1]) + abs(i[2] - j[2]))
+            # temp.append((i[0] - j[0])**2 + (i[1] - j[1])**2 + (i[2] - j[2])**2)
+            temp += (i[0] - j[0])**2 + (i[1] - j[1])**2 + (i[2] - j[2])**2
 
-        diffPoint.append(temp[0]+ temp[1]+ temp[2]+temp[3])
+        diffPoint.append(temp)
     logDiff(diffPoint)
     return diffPoint
 
@@ -103,12 +105,7 @@ def click(x,y):
     mousex = pyautogui.position()[0]
     if mousex > 1000:
         exit()
-    # mouse.click(725,233)
-    # mouse.press(x,y)
-    # time.sleep(random.choice(range(1,5)) * 0.1)
-    # mouse.release(x,y)
     mouse.click(x,y)
-    # pyautogui.click(x,y)
 
 for j in range(4):
     print(4)
@@ -141,9 +138,9 @@ for _ in range(15):
     index = diffpoint.index(max(diffpoint))
     click(mousePosition6[index][0], mousePosition6[index][1])
 
-for _ in range(16):
+for _ in range(15):
     print(16)
-    time.sleep(1.6)
+    time.sleep(2.5)
     currentColor16 = []
     im = pyautogui.screenshot()
     time.sleep(0.5)
@@ -158,7 +155,7 @@ for _ in range(16):
 
 for _ in range(15):
     print(25)
-    time.sleep(1.5)
+    time.sleep(4.5)
     currentColor25 = []
     im = pyautogui.screenshot()
     time.sleep(0.5)
@@ -167,5 +164,18 @@ for _ in range(15):
 
     diffpoint = getColorDiff(currentColor25)
 
+    # reverse = False
+    # sortedDiff = sorted(diffpoint, reverse=False)
+    # choseddiff = []
+    # for i in range(len(sortedDiff)):
+    #     tempj = sortedDiff.count(sortedDiff[i])
+    #     if tempj > 1:
+    #         continue
+    #     else:
+    #         choseddiff.append(sortedDiff[i])
+    # index = diffpoint.index(random.choice(choseddiff))
+    # index = diffpoint.index(max(choseddiff))
+    # logDiff(index)
+    # click(mousePosition25[index][0], mousePosition25[index][1])
     index = diffpoint.index(max(diffpoint))
     click(mousePosition25[index][0], mousePosition25[index][1])
