@@ -10,7 +10,7 @@ time.sleep(1)
 
 mouse = PyMouse()
 
-DELAY = [0.5, 0.8,]
+DELAY = [0.4, 0.8,]
 
 def deltaRgb(rgb1, rgb2):
     rmean = (rgb1[0] + rgb2[0]) // 2
@@ -52,14 +52,14 @@ def logDiff(diffPoint):
 
 
 
-mousePosition4 = [
+MOUSE_POSITION4 = [
     (155, 456),
     (341, 456),
     (155, 620),
     (341, 620)
     ]
 
-mousePosition6 = [
+MOUSE_POSITION9 = [
     (119,407),
     (235,418),
     (356,416),
@@ -72,7 +72,7 @@ mousePosition6 = [
 
 ]
 
-mousePosition16= [
+MOUSE_POSITION16= [
     (111,394),
     (196,394),
     (277,394),
@@ -91,7 +91,7 @@ mousePosition16= [
     (365,615),
 ]
 
-mousePosition25= [
+MOUSE_POSITION25= [
     (83,369),
     (161,369),
     (236,369),
@@ -119,6 +119,39 @@ mousePosition25= [
     (394,643),
 ]
 
+
+COLOR_SAMPLE_POSITION9 = [
+    (119,407),
+    (235,418),
+    (356,416),
+    (120,535),
+    (235,535),
+    (361,535),
+    (119,644),
+    (235,644),
+    (356,644),
+
+]
+
+MOUSE_POSITION16= [
+    (111,394),
+    (196,394),
+    (277,394),
+    (365,394),
+    (111,482),
+    (196,482),
+    (277,482),
+    (365,482),
+    (111,569),
+    (196,569),
+    (277,569),
+    (365,569),
+    (111,615),
+    (196,615),
+    (277,615),
+    (365,615),
+]
+
 def click(x,y):
     mousex = pyautogui.position()[0]
     if mousex > 1000:
@@ -130,7 +163,7 @@ for j in range(4):
     time.sleep(DELAY[0])
     currentColor4 = []
     im = pyautogui.screenshot()
-    for i in mousePosition4:
+    for i in MOUSE_POSITION4:
         currentColor4.append(im.getpixel(i))
 
     
@@ -138,24 +171,24 @@ for j in range(4):
 
 
     index = diffpoint.index(max(diffpoint))
-    click(mousePosition4[index][0], mousePosition4[index][1])
+    click(MOUSE_POSITION4[index][0], MOUSE_POSITION4[index][1])
 
 
 
 for _ in range(15):
     print(9)
-    time.sleep(DELAY[1])
+    time.sleep(DELAY[0])
     currentColor6 = []
     im = pyautogui.screenshot()
     time.sleep(0.5)
-    for i in mousePosition6:
+    for i in COLOR_SAMPLE_POSITION9:
         currentColor6.append(im.getpixel(i))
 
     
     diffpoint = getColorDiff(currentColor6)
 
     index = diffpoint.index(max(diffpoint))
-    click(mousePosition6[index][0], mousePosition6[index][1])
+    click(MOUSE_POSITION9[index][0], MOUSE_POSITION9[index][1])
 
 for _ in range(15):
     print(16)
@@ -163,14 +196,14 @@ for _ in range(15):
     currentColor16 = []
     im = pyautogui.screenshot()
     time.sleep(0.5)
-    for i in mousePosition16:
+    for i in MOUSE_POSITION16:
         currentColor16.append(im.getpixel(i))
 
     
     diffpoint = getColorDiff(currentColor16)
 
     index = diffpoint.index(max(diffpoint))
-    click(mousePosition16[index][0], mousePosition16[index][1])
+    click(MOUSE_POSITION16[index][0], MOUSE_POSITION16[index][1])
 
 for _ in range(15):
     print(25)
@@ -178,25 +211,12 @@ for _ in range(15):
     currentColor25 = []
     im = pyautogui.screenshot()
     time.sleep(0.5)
-    for i in mousePosition25:
+    for i in MOUSE_POSITION25:
         currentColor25.append(im.getpixel(i))
 
     diffpoint = getColorDiff(currentColor25, True)
 
-    # reverse = False
-    # sortedDiff = sorted(diffpoint, reverse=False)
-    # choseddiff = []
-    # for i in range(len(sortedDiff)):
-    #     tempj = sortedDiff.count(sortedDiff[i])
-    #     if tempj > 1:
-    #         continue
-    #     else:
-    #         choseddiff.append(sortedDiff[i])
-    # index = diffpoint.index(random.choice(choseddiff))
-    # index = diffpoint.index(max(choseddiff))
-    # logDiff(index)
-    # click(mousePosition25[index][0], mousePosition25[index][1])
     index = diffpoint.index(max(diffpoint))
     
     logDiff(index)
-    click(mousePosition25[index][0], mousePosition25[index][1])
+    click(MOUSE_POSITION25[index][0], MOUSE_POSITION25[index][1])
